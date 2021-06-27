@@ -8,7 +8,9 @@ const initialState = {
     },
     will: {
 
-    }
+    },
+    fields: [],
+    users: [],
 }
 
 const updateState = (type, state, key, payload) => {
@@ -28,6 +30,31 @@ function reducer(state, action) {
             return updateState('will', state, key, payload)
         case 'UPDATE_KIERAN':
             return updateState('kieran', state, key, payload)
+        case 'UPDATE_FIELDS':
+            return {
+                ...state, 
+                fields : {
+                    ...state.fields,
+                    [action.key] : payload
+                }
+            }
+        case 'ADD_USER':
+            return {
+                ...state,
+                users: {
+                    ...state.users,
+                    [action.key]: payload
+                }
+            }
+        case 'RESET_DATA': 
+            return {
+                ...state,
+                fields: {
+                    Age: '',
+                    Name: '',
+                    FavQuote: '',
+                }
+            }
         default:
             return state;
     }
