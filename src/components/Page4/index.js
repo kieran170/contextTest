@@ -30,28 +30,42 @@ export default function Page4() {
     }
     return (
         <Grid container md={12} style={{placeContent: 'center'}}>
-            <Grid container md={2} >
-                <Grid item md={12} style={{textAlign: 'center'}}>
-                    <Grid item md={12}>
-                    <Typography>User Name</Typography>
-                    <TextField value={userContext.state.fields.UserName|| ''} onChange={(e) => handleChange(e, 'UserName')} placeholder='Username' variant='outlined'></TextField>
-                    </Grid>
-                    <Grid item md={12}>
-                    <Typography>Password</Typography>
-                    <TextField value={userContext.state.fields.Password|| ''} onChange={(e) => handleChange(e, 'Password')} placeholder='Password' type={'password'} variant='outlined'></TextField>
-                    </Grid>
-                    <Grid item md={12} style={{paddingBottom: '10px'}}>
-                    <Typography>Confirm Password</Typography>
-                    <TextField value={userContext.state.fields.ConfirmPassword|| ''} onChange={(e) => handleChange(e, 'ConfirmPassword')} placeholder='Password' type={'password'} variant='outlined'></TextField>
-                    </Grid>
-                    <Grid item md={12}>
-                    {!logged && <Button onClick={handleSubmit} variant='outlined'>Submit</Button>}
-                    </Grid>
-                    {wrongPass && <Typography style={{color: 'red'}}>Password's Don't Match</Typography>}
-                    {logged && <Link to='/5'><Button variant='outlined'>Homepage</Button></Link>}
-                </Grid>
+            {logged === false ? 
+          <Grid container md={2} >
+          <Grid item md={12} style={{textAlign: 'center'}}>
+              <Grid item md={12}>
+              <Typography>User Name</Typography>
+              <TextField value={userContext.state.fields.UserName|| ''} onChange={(e) => handleChange(e, 'UserName')} placeholder='Username' variant='outlined'></TextField>
+              </Grid>
+              <Grid item md={12}>
+              <Typography>Password</Typography>
+              <TextField value={userContext.state.fields.Password|| ''} onChange={(e) => handleChange(e, 'Password')} placeholder='Password' type={'password'} variant='outlined'></TextField>
+              </Grid>
+              <Grid item md={12} style={{paddingBottom: '10px'}}>
+              <Typography>Confirm Password</Typography>
+              <TextField value={userContext.state.fields.ConfirmPassword|| ''} onChange={(e) => handleChange(e, 'ConfirmPassword')} placeholder='Password' type={'password'} variant='outlined'></TextField>
+              </Grid>
+              <Grid item md={12}>
+              <Button onClick={handleSubmit} variant='outlined'>Submit</Button>
+              </Grid>
+              {wrongPass && <Typography style={{color: 'red'}}>Password's Don't Match</Typography>}
+              {logged && <Link to='/5'><Button variant='outlined'>Homepage</Button></Link>}
+          </Grid>
+      </Grid>  
+        :
+        <Grid container md={12} style={{textAlign: 'center', marginTop: '50vh'}}>
+            <Grid item md={12}>
+                <Typography>Hello {userContext.state.user.UserName} you are signed in</Typography>
             </Grid>
-            <pre>{JSON.stringify(userContext, null, 2)}</pre>
+            <Grid item md={12}>
+                <Link to='/5' style={{ textDecoration: 'none' }}>
+                <Button variant='outlined'>Enter Here</Button>
+                </Link>
+            </Grid>
+            
+            
+        </Grid>
+        }
         </Grid>
     )
 }

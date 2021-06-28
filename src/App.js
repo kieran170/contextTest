@@ -7,6 +7,7 @@ import Page4 from './components/Page4'
 import Page5 from './components/page5'
 import {OrgProvider} from './context/context'
 import {UserProvider} from './context/userContext'
+import Profile from "./components/ProfilePage"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Page3 path='/3' />
       <Page4 path='/4' />
       <Page5 path='/5' />
+      <Profile path='/profile' />
     </Router>
     </UserProvider>
     </OrgProvider>
